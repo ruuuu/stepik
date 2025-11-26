@@ -6,16 +6,24 @@
 
 function createFreezer(obj){
 
-  //let name = obj.name;
-  
+  let frozenObj = { ...obj }        // копия объекта obj
 
+  let changedProperties = {}       // объект, сюда будем заносить свойства которые меняли
+
+
+
+  
   return {
 
-    get: function(){
-      return obj.name;
+    get: function(key){
+      return frozenObj[key];
     },
     set: function(key, value){
-      obj[key] = value
+      if(!changedProperties[key]){      // если свойства key еще нет в объекте
+          frozenObj[key] = value
+          changedProperties[key] = true    // теперь свойство key есть в объекте
+      }
+      
       //console.log(obj[key])
     }
   }
@@ -32,6 +40,7 @@ freezer.set('name', 'Bob');
 console.log(freezer.get('name'));     // Bob
 
 
-let frozeObj = Object.freeze(freezer);       // заморозили объект freezer
-frozeObj.set('name', 'Charlie');       // Ничего не меняется
-console.log(frozeObj.get('name'));      // Bob
+
+
+freezer.set('name', 'Charlie');       // Ничего не меняется
+console.log(freezer.get('name'));      // Bob
