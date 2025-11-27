@@ -6,6 +6,9 @@
 
 // function once(fn){     // fn-оригинальная функция, once - внешняя функция
 
+
+// переменные called result из замыкания
+
 //   let called = false;
 
 //   let result;   // undefined
@@ -23,7 +26,7 @@
 
 
 
-// либо со стрелочной функцией чтоб неиспользовать fn.apply(this):
+// либо со стрелочной функцией, чтоб неиспользовать fn.apply(this):
 function once(fn){
 
   let called = false;
