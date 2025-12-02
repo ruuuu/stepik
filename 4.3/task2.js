@@ -11,16 +11,18 @@ function sum(a, b) { return a + b; }
 
 function partial(fn, fixedValue){ // передаем функцию и аргумент
 
-  return function(remainValue){     // замыкание
+  let result = (remainValue) => {     // замыкание
     
-    return fn(fixedValue, remainValue)
+      return fn(fixedValue, remainValue);
   }
+
+  return result;
 }
 
 
 
 
 
-const addFive = partial(sum, 5); // sum(5)
+const addFive = partial(sum, 5); // function(remainValue)
 
-console.log(addFive(10))
+console.log(addFive(10)) // вызов sum(5, 10)

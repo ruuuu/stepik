@@ -5,6 +5,7 @@
 // прошедших с момента старта.
 
 function createTimer(){
+  
   let startTime;
 
   return {
