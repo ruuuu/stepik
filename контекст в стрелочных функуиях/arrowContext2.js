@@ -1,5 +1,14 @@
 // Пример 2: Работа внутри объекта
 
+// КОНТЕКСТ зависит от СПОСОБА ВЫЗОВА:
+
+// если obj.method(), то this = obj
+
+// если method(), то this = window/undefined
+
+
+
+
 const company = {
     //  КОНТЕКСТ1
     name: "IT-Компания",
@@ -17,7 +26,7 @@ const company = {
     // ✅ ХОРОШО: обычная функция в методе объекта
     показатьСотрудниковХорошо: function() {
         //  КОНТЕКСТ1
-        console.log(this.name); // "IT-Компания" ✓
+        console.log(this.name); // "IT-Компания" 
         this.persons.forEach(person => {
             console.log(person); // выведет
         });
@@ -37,4 +46,4 @@ const company = {
 
 company.показатьСотрудниковПлохо(); // ❌ Не работает
 company.показатьСотрудниковХорошо(); // ✅ Работает
-company.показатьСОтсчетом(); // ✅ Работает отлично
+company.показатьСОтсчетом(); // ✅ Работает 
