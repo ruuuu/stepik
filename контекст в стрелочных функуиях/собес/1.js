@@ -1,14 +1,24 @@
+// Задача 1: Базовый контекст
+
+
+// КОНТЕКСТ зависит от СПОСОБА ВЫЗОВА:
+
+// если obj.method(), то this = obj
+
+// если method(), то this = window/undefined
+
+
 const obj = {
-  value: 42,
-  getValue: () => {
-    console.log(this.value); // undefined
+  name: 'John',
+  regularFunc: function() {
+    console.log(this.name); // тк вызов regularFunc() происхдит как obj.regularFunc(), regularFunc - обычнаяя фукнция(не стрелочная), то this = obj
+  },
+  arrowFunc: () => {
+    console.log(this.name); // тк вызов arrowFunc() происхдит как obj.arrowFunc(),arrowFunc- стрелочная фун-ия, то this берет от родителя,  а одиетль здеь window/undefined
   }
 };
 
-console.log(obj.getValue()); // undefined
 
-// "Стрелочная функция getValue берет this из внешней области, а не из объекта obj, в котором она объявлена. 
-// В данном случае внешняя область - глобальная, поэтому this.value это window.value, который undefined. 
-// Для методов объектов нужно использовать обычные функции."
 
-// Поэтому в методах объекта надо писать ОБЫЧНУЮ функцию, а не стрелочную!!
+obj.regularFunc(); //  'John',
+obj.arrowFunc();   // undefined
