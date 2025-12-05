@@ -6,6 +6,9 @@
 // если method(), то this = window/undefined
 
 
+// В методах объекта надо использовать ОБЫЧНУЮ фукнцию, а не стрелочную!!!
+
+
 const library = {
     // КОНТЕКСТ1:
     name: "Городская библиотека",
@@ -17,7 +20,7 @@ const library = {
     
 
     findBooks: function() {
-        // КОНТЕКСТ1(тк вызов будет obj.method(), то this = obj): this = library
+        // КОНТЕКСТ1: тк вызов будет obj.method(), то this = obj то есть this = library
         console.log(`Библиотека: ${this.name}`);  // "Городская библиотека"
         
         // ❌ forEach с обычной функцией
@@ -38,7 +41,7 @@ const library = {
     
 
     findFatBooks: function(limitPage) {
-        // КОНТЕКСТ1: (тк вызов будет obj.method(), то this = obj): this = library
+        // КОНТЕКСТ1: тк вызов будет obj.method(), то this = obj то есть this = library
         
         return this.books.filter(book => {
             return book.pages > limitPage && this.name.includes("Городская");    // ✅ this доступен

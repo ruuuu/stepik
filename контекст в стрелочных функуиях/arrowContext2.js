@@ -7,7 +7,7 @@
 // если method(), то this = window/undefined
 
 
-
+// В методах объекта надо использовать ОБЫЧНУЮ фукнцию, а не стрелочную!!!
 
 const company = {
     //  КОНТЕКСТ1
@@ -16,8 +16,9 @@ const company = {
     
     // ❌ ПЛОХО: стрелочная функция в методе объекта
     показатьСотрудниковПлохо: () => {
-        // console.log('this ', this) // {}
-        //console.log(this.name); // undefined!
+        // тк вызываем как company.показатьСотрудниковПлохо(), поэтому this = undefined
+        console.log('this ', this) // {}
+        console.log(this.name); // undefined!
         this.persons.forEach(person => {
             console.log(person);
         });
@@ -25,7 +26,7 @@ const company = {
     
     // ✅ ХОРОШО: обычная функция в методе объекта
     показатьСотрудниковХорошо: function() {
-        //  КОНТЕКСТ1
+        //  КОНТЕКСТ1, тк вызываем как company.показатьСотрудниковХорошо(), поэтому this = company
         console.log(this.name); // "IT-Компания" 
         this.persons.forEach(person => {
             console.log(person); // выведет
@@ -34,15 +35,17 @@ const company = {
     
     // ✅ ХОРОШО: стрелочная функция ВНУТРИ обычной
     показатьСОтсчетом: function() {
-        //  КОНТЕКСТ1
+        //  КОНТЕКСТ1, тк вызываем как company.показатьСОтсчетом(), поэтому this = company
         console.log("Компания:", this.name);
         
         this.persons.forEach((person, i) => {
             // Эта стрелочная функция видит this из показатьСОтсчетом
-            console.log(`${i + 1}. ${person} работает в ${this.name}`);
+            console.log(`${i + 1}. ${person} работает в ${this.name}`); // выведет
         });
     }
 };
+
+
 
 company.показатьСотрудниковПлохо(); // ❌ Не работает
 company.показатьСотрудниковХорошо(); // ✅ Работает

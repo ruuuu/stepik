@@ -15,6 +15,8 @@
 // Стрелочная функция: "Я буду жить в мире того, кто меня создал"
 
 
+// В методах объекта надо использовать ОБЫЧНУЮ фукнцию, а не стрелочную!!!
+
 
 const game = {
     // КОНТЕКСТ 1:
@@ -28,14 +30,14 @@ const game = {
         
         const funcObj = {
             simple: function() {
-                // КОНТЕКСТ 2: 
-                console.log("Обычная функция, this =", this);  // тк вызываем как funcObj.simple(), то this = funcObj, те  { simple: f, arrow: f }
+                // КОНТЕКСТ 2: тк вызываем как funcObj.simple(), то this = funcObj
+                console.log("Обычная функция, this =", this);  //    { simple: f, arrow: f }
                 console.log("this.name ", this.name)  // undefined
             },
             
             // Стрелочная функция - НЕ создает новый контекст
             arrow: () => {
-                // КОНТЕКСТ 1 (что и у родителя): this = объект game
+                // КОНТЕКСТ 1: тк вызываем как funcObj.arrow(), то this = funcObj, но ткт стрелочная юерет контект от родителя, то this = объект game
                 console.log("Стрелочная функция, this =", this); // { name: "Рыцарь",  level: 1,  улучшитьОружие: f,  прокачатьПерсонажа: f }
                 console.log("this.name ", this.name)  // "Рыцарь"
             }
@@ -47,7 +49,7 @@ const game = {
 
 
     прокачатьПерсонажа: function() {
-        // КОНТЕКСТ 1(тк вызов будет obj.method(), то this = obj):  this = объект game
+        // КОНТЕКСТ 1: тк вызов будет obj.method(), то this = obj то есть  this = объект game
         const oldLevel = this.level; // 1
         
         const methods = [
@@ -75,7 +77,7 @@ const game = {
 
 
 game.улучшитьОружие(); // Создается КОНТЕКСТ 1
-//game.прокачатьПерсонажа(); // Создается КОНТЕКСТ 1
+game.прокачатьПерсонажа(); // Создается КОНТЕКСТ 1
 
 
 

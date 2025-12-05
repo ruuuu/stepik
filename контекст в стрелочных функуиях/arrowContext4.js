@@ -28,6 +28,6 @@ class Counter{
     }
 }
 
-const myCounter = new Counter(); // создали экземпляр(объект= {счет: 0, элемент: 'button'}) класса 
+const myCounter = new Counter(); // создали экземпляр(объект) {account: 0, elem: 'button'} класса 
 console.log('мойСчетчик ', myCounter)
 //document.body.appendChild(мойСчетчик.элемент);
