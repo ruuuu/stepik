@@ -22,14 +22,14 @@ const game = {
     level: 1,
     
     улучшитьОружие: function() {
-        // КОНТЕКСТ 1: this = объект game
+        // КОНТЕКСТ 1(тк вызов будет obj.method(), то this = obj): this = объект game
       
-        console.log(`Улучшаем оружие для ${this.name}`); // "Рыцарь" ✓
+        console.log(`Улучшаем оружие для ${this.name}`); // "Рыцарь" 
         
         const funcObj = {
             simple: function() {
                 // КОНТЕКСТ 2: 
-                console.log("Обычная функция, this =", this);  // this = funcObj!!, те  { simple: f, arrow: f }
+                console.log("Обычная функция, this =", this);  // тк вызываем как funcObj.simple(), то this = funcObj, те  { simple: f, arrow: f }
                 console.log("this.name ", this.name)  // undefined
             },
             
@@ -47,13 +47,13 @@ const game = {
 
 
     прокачатьПерсонажа: function() {
-        // КОНТЕКСТ 1:  this = объект game
+        // КОНТЕКСТ 1(тк вызов будет obj.method(), то this = obj):  this = объект game
         const oldLevel = this.level; // 1
         
         const methods = [
             // Обычная функция
             function() { 
-                // КОНТЕКСТ 3: 
+                // КОНТЕКСТ 3:  тк вызываем как methods[0](), то this = window/undefined
                 console.log("Метод 1, this =", this); // this = window/undefined
                 return this?.level ? this.level++ : "нет уровня"; // нет уровня
             },
@@ -75,7 +75,7 @@ const game = {
 
 
 game.улучшитьОружие(); // Создается КОНТЕКСТ 1
-game.прокачатьПерсонажа(); // Создается КОНТЕКСТ 1
+//game.прокачатьПерсонажа(); // Создается КОНТЕКСТ 1
 
 
 
