@@ -1,6 +1,6 @@
 // Задача 6: Event Listeners (практическая!)
 
-// есил this находится в обрбаотчике события, то this = Элемент, на котором произошло событие
+// если this находится в обрбаотчике события, то this = Элемент, на котором произошло событие
 
 
 const button = document.createElement('button');
@@ -13,12 +13,12 @@ document.body.append(button);
 const handler = {
   clicks: 0,
 
-  handleClick: function() { // обрбаотчик события
+  handleClick: function() { // обработчик события
     this.clicks++; // this в обрбаотчике события, значит this = элемент button (элемент на котром произошло событие), у button нет свойства clicks
     console.log(`Clicks: ${this.clicks}`); // undefined++ = NaN 
   },
 
-  handleClickArrow: () => { // обрбаотчик события
+  handleClickArrow: () => { // обработчик события
     this.clicks++; // this берет из внешней области, то есть this = window(в браузере), undefined++ = NaN 
     console.log(`Arrow clicks: ${this.clicks}`); // 
   }

@@ -22,11 +22,12 @@ const user = {
     }, 100);
   },
 
+
   greetArrow: function() {
     // контекст1
     setTimeout(() => {
       // контекст3
-      console.log(`Hello, ${this.name}`); // this = user то есть контекст от родителя(контекст1)
+      console.log(`Hello, ${this.name}`); // this = user то есть контекст от родителя greetArrow(контекст1)
     }, 100);
   }
 };

@@ -1,6 +1,11 @@
+// если стрелочную фукнцию(обработчик) поместить в метод объекта, то this = obj
+// если this находится в обрбаотчике события, то this = Элемент, на котором произошло событие
+
+
+
 const button = document.createElement('button');
 button.textContent = 'Test Click';
-document.body.appendChild(button);
+document.body.appendChild(button); 
 
 
 
@@ -14,6 +19,7 @@ const handler1 = {
     this.clicks++; 
     console.log(`Clicks: ${this.clicks}`); 
   },
+
 
   setupEventListeners: function(){ 
     console.log('В setupEventListeners this =', this); // handler1

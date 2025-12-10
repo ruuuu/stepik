@@ -10,12 +10,15 @@
 
 const obj = {
   name: 'John',
+
   regularFunc: function() {
     console.log(this.name); // тк вызов regularFunc() происхдит как obj.regularFunc(), regularFunc - обычнаяя фукнция(не стрелочная), то this = obj
   },
+
   arrowFunc: () => {
-    console.log(this.name); // тк вызов arrowFunc() происхдит как obj.arrowFunc(),arrowFunc- стрелочная фун-ия, то this берет от родителя,  а одиетль здеь window/undefined
+    console.log(this.name); // тк вызов arrowFunc() происхдит как obj.arrowFunc(), но arrowFunc- стрелочная фун-ия, то this берет из внешней области,  здесь это window/undefined
   }
+
 };
 
 

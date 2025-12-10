@@ -30,5 +30,5 @@ const company = {
 
 
 
-company.department.getDeptName(); // 
-company.department.getDeptArrow(); // 
+company.department.getDeptName(); // 'Dev'
+company.department.getDeptArrow(); // undefined
