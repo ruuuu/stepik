@@ -53,8 +53,8 @@ const company = {
         console.log(this.name)          // "IT-Компания" 
         console.log(this.persons)       // ["Аня", "Боря", "Вова"]
 
-        this.persons.forEach(person => {
-            console.log(person)        // выведет
+        this.persons.forEach(person => {    // ХОРОШО: стрелочная функция ВНУТРИ обычной
+            console.log(person)         // выведет
         });
     },
     
