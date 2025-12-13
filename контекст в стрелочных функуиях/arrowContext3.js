@@ -27,12 +27,13 @@ const button = {
         console.log('this in method1= ', this)  // button = { text: 'Нажми меня',  clicks: 0,  method1: Fuction,  method2: Fuction,  method3: Fuction }
 
         setTimeout(function() {
-            // контекст2, контекст уже другой: this = window/indefined
+            // контекст2, тут обычная фкнуия, потому контекст уже другой: this = window/indefined
             this.clicks++;              // ❌ Не работает
             console.log("Кликов:", this.clicks);            // undefined
         }, 1000);
     },
     
+
 
     // ✅ Старое решение: сохранить this
     method2: function() {
@@ -50,6 +51,7 @@ const button = {
         }, 1000);
     },
 
+    
     
     // ✅ Современное решение: стрелочная функция
     method3: function() {

@@ -14,39 +14,68 @@ const company = {
     name: "IT-Компания",
     persons: ["Аня", "Боря", "Вова"],
     
+
     // ❌ ПЛОХО: стрелочная функция в методе объекта
-    показатьСотрудниковПлохо: () => {
-        // тк вызываем как company.показатьСотрудниковПлохо(), поэтому this = undefined
-        console.log('this ', this) // {}
-        console.log(this.name); // undefined!
-        this.persons.forEach(person => {
-            console.log(person);
-        });
-    },
+    // func1: () => {
+    //     // тк вызываем как company.func1(), поэтому this = undefined
+    //     console.log('this ', this)      // {}
+    //     // console.log(this.name)       // undefined
+    //     // console.log(this.persons)    // this.persons = undefined
+
+    //     this.persons.forEach(person => {        
+    //         console.log(person)          // undefined
+    //     });
+    // },
+
+
     
+    //  чтобы исправить, нужно стрелочную обернуть в обычную фукнию:
+    func11: function() {
+       return () => {
+        
+        console.log('this ', this)      // { name, person, func1, func2, func3 }
+        console.log(this.name)          
+        console.log(this.persons)       
+
+        this.persons.forEach(person => {        
+            console.log(person)          // выведет
+        });
+      };
+
+      
+    },
+       
+    
+
     // ✅ ХОРОШО: обычная функция в методе объекта
-    показатьСотрудниковХорошо: function() {
-        //  КОНТЕКСТ1, тк вызываем как company.показатьСотрудниковХорошо(), поэтому this = company
-        console.log(this.name); // "IT-Компания" 
+    func2: function() {
+        //  Тк вызываем как company.func2(), поэтому this = company
+        console.log(this.name)          // "IT-Компания" 
+        console.log(this.persons)       // ["Аня", "Боря", "Вова"]
+
         this.persons.forEach(person => {
-            console.log(person); // выведет
+            console.log(person)        // выведет
         });
     },
     
+
     // ✅ ХОРОШО: стрелочная функция ВНУТРИ обычной
-    показатьСОтсчетом: function() {
-        //  КОНТЕКСТ1, тк вызываем как company.показатьСОтсчетом(), поэтому this = company
-        console.log("Компания:", this.name);
+    func3: function() {
+        // Тк вызываем как company.func3(), поэтому this = company
+        console.log("Компания:", this.name)      // "IT-Компания"
         
         this.persons.forEach((person, i) => {
-            // Эта стрелочная функция видит this из показатьСОтсчетом
-            console.log(`${i + 1}. ${person} работает в ${this.name}`); // выведет
+            // Эта стрелочная функция видит this из func3
+            console.log(`${i + 1}. ${person} работает в ${this.name}`)     // выведет
         });
     }
 };
 
 
 
-company.показатьСотрудниковПлохо(); // ❌ Не работает
-company.показатьСотрудниковХорошо(); // ✅ Работает
-company.показатьСОтсчетом(); // ✅ Работает 
+// company.func1();        // undefined
+
+const f = company.func11();     //  работает, f-фукнция
+f()
+// company.func2();    //  Работает
+// company.func3();    // Работает 
