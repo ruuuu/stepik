@@ -27,7 +27,7 @@ const library = {
         this.books.forEach(function(book, ind) {
             // КОНТЕКСТ2: this = undefined
             console.log(`${ind + 1}. ${book.name}`);
-            console.log(`В библиотеке ${this.название}`);    // this = undefined
+            console.log(`В библиотеке ${this.name}`);    // this = undefined
         });
         
       

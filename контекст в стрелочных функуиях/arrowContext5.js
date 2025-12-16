@@ -23,7 +23,7 @@ const game = {
     name: "Рыцарь",
     level: 1,
     
-    улучшитьОружие: function() {
+    improve: function() {
         // КОНТЕКСТ 1(тк вызов будет obj.method(), то this = obj): this = объект game
       
         console.log(`Улучшаем оружие для ${this.name}`); // "Рыцарь" 
@@ -48,7 +48,7 @@ const game = {
     },
 
 
-    прокачатьПерсонажа: function() {
+    improvePerson: function() {
         // КОНТЕКСТ 1: тк вызов будет obj.method(), то this = obj то есть  this = объект game
         const oldLevel = this.level; // 1
         
@@ -56,28 +56,28 @@ const game = {
             // Обычная функция
             function() { 
                 // КОНТЕКСТ 3:  тк вызываем как methods[0](), то this = window/undefined
-                console.log("Метод 1, this =", this); // this = window/undefined
-                return this?.level ? this.level++ : "нет уровня"; // нет уровня
+                console.log("Метод 1, this =", this);       // this = window/undefined
+                return this?.level ? this.level++ : "нет уровня";       // нет уровня
             },
             
             // Стрелочная функция
             () => { 
                 // КОНТЕКСТ 1(что и у родтеля)
-                console.log("Метод 2, this =", this); // объект game
+                console.log("Метод 2, this =", this);       // объект game
                 return this.level++; // 2
             }
         ];
         
-        methods[0](); // ❌ this = window/undefined, вернет  "нет уровня"
-        methods[1](); // ✅ this = объект game, вернет 2
-        console.log(`Уровень: ${oldLevel } → ${this.level}`); // Уровень:  1 → 2
+        methods[0]();           // ❌ this = window/undefined, вернет  "нет уровня"
+        methods[1]();           // ✅ this = объект game, вернет 2
+        console.log(`Уровень: ${oldLevel } → ${this.level}`);       // Уровень:  1 → 2
     }
 };
 
 
 
-game.улучшитьОружие(); // Создается КОНТЕКСТ 1
-game.прокачатьПерсонажа(); // Создается КОНТЕКСТ 1
+game.improve(); // Создается КОНТЕКСТ 1
+game.improvePerson(); // Создается КОНТЕКСТ 1
 
 
 
