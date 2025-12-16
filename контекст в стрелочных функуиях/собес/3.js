@@ -26,7 +26,7 @@ const user = {
   greetArrow: function() {
     // контекст1
     setTimeout(() => {
-      // контекст3
+      // контекст1
       console.log(`Hello, ${this.name}`); // this = user то есть контекст от родителя greetArrow(контекст1)
     }, 100);
   }

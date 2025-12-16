@@ -15,12 +15,12 @@ const handler = {
 
   handleClick: function() { // обработчик события
     this.clicks++; // this в обрбаотчике события, значит this = элемент button (элемент на котром произошло событие), у button нет свойства clicks
-    console.log(`Clicks: ${this.clicks}`); // undefined++ = NaN 
+    console.log(`Clicks: ${this.clicks}`);      // undefined++ = NaN 
   },
 
   handleClickArrow: () => { // обработчик события
     this.clicks++; // this берет из внешней области, то есть this = window(в браузере), undefined++ = NaN 
-    console.log(`Arrow clicks: ${this.clicks}`); // 
+    console.log(`Arrow clicks: ${this.clicks}`);    // undefined++ = NaN 
   }
 };
 
@@ -57,23 +57,26 @@ button.addEventListener('click', handler.handleClickArrow); // Nan
 //   clicks: 0,
 
 //   handleClick: function() {
-//     this.clicks++; // this = handler1, тк вызывется как obj.method
+//     this.clicks++; // this = handler1, тк вызывется как obj.method()
 //     console.log(`Clicks: ${this.clicks}`); 
 //   },
 
-//   setupEventListeners: function(){ // если стрелочную фукнцию(обработчик) поместить в метод объекта, то this = obj.  Чаще на практике испоьзуют
+//   setupEventListeners: function(){     // если стрелочную фукнцию(обработчик) поместить в метод объекта, то this = obj.  Чаще на практике испоьзуют
 //     button.addEventListener('click', () => {
 //       this.clicks++; // this = handler1
-//       console.log(`Arrow clicks: ${this.clicks}`); // Работает
+//       console.log(`Arrow clicks: ${this.clicks}`);     // Работает
 //     });
 //   }
   
 // };
 
-// handler1.setupEventListeners();  // this = handler1 (вызываем как obj.method())
+
 // button.addEventListener('click', () => {
-//   handler1.handleClick()  // здесь вызываем handleClick() как obj.method(), и тогда this = obj
+//   handler1.handleClick()       // здесь вызываем handleClick() как obj.method(), и тогда this = obj
 // });
+
+// handler1.setupEventListeners();      // this = handler1 (вызываем как obj.method())
+
 
 
 
