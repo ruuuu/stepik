@@ -5,6 +5,7 @@
 
 
 const app = {
+  
   config: {
     apiUrl: 'https://api.example.com',
     log: () => {      // тк стрелочная фукнция берет this из внешней области(а тут она глобальная=window), то this = window
