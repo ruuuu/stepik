@@ -31,11 +31,11 @@ const car = {
 
 
 const getBrand = () => {     // this = window/global, стрелочная фукнция берет this из внешней области
-  console.log(this.brand);   // undefined, чтобы заработало, надо сделать getBrand() ОБЫЧНОЙ фукнцией
+  console.log(this.brand);   // undefined, чтобы заработало, надо сделать getBrand() ОБЫЧНОЙ фукнцией и вызывать  ее так: getBrand.call(car)
 };
 
 
-const getBrandRegular = function() { // при вызове создаетс свой this
+const getBrandRegular = function() {    // обычная функция  при вызове создает свой this, this = undefined
   console.log(this.brand);      // call()  устанавливает this = car
 };
 
