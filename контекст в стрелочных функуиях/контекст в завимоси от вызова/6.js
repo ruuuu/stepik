@@ -46,5 +46,5 @@ inc();               //  стрелч функция в контрукторе, 
 counter.decrement();        // тк вызов как obj.method(), то this = экземпляру класса,  выведет 1
 dec();                      // тк вызов как method(), то this = undefined(контекст потерляся)
 
-Counter.reset();         // reset — статический метод. Внутри него this ссылается на сам класс Counter, а не на экземпляр(counter). 
+Counter.reset();         // reset — статический метод. this = класс Counter, а не экземпляр(counter). 
 // У класса нет свойства count, поэтому this.count = 0 создаст свойство count у класса Counter, но console.log(this.count) выведет 0.
