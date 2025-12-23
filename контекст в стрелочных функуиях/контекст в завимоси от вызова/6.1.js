@@ -3,7 +3,7 @@
 
 // Стрелочная функция и обычная функция в конструкторе , в них this = экземпляру класса(объекту класса) 
 // Стрелочная функция в классе (не в конструкторе), в ней this = экземпляру класса(объекту класса) 
-// Обычная функцияв классе (не в конструкторе), в ней this зависит от контекста вызова
+// Обычная функция в классе (не в конструкторе), в ней this зависит от контекста вызова
 
 
 
@@ -19,7 +19,7 @@ class Person {
     
     
     this.sayHi = function() {       //  обычная функция в конструкторе
-      console.log(this.name);       // this также ссылается на экземпляр
+      console.log(this.name);       // this также ссылается на экземпляр (this = экземпляру класса )
     };
   }
   
@@ -27,7 +27,7 @@ class Person {
 
   
   sayBye = () => {        // Стрелочная функция в теле класса (не в конструкторе)
-    console.log(this.name);     // this ссылается на экземпляр
+    console.log(this.name);     // this = экземпляр класса 
   };
   
 
@@ -46,10 +46,10 @@ const person = new Person('Иван');      // создали экземпляр
 
 
 // Все три варианта работают корректно при прямом вызове
-// person.sayHello();      // this = person, выведет 'Иван'
-// person.sayHi();         // this = person, выведет 'Иван'
-// person.sayBye();        //  this = person, выведет 'Иван'
-// person.sayGoodbye();    // т к вызов как obj.method(), то this = obj, выведет 'Иван'
+person.sayHello();      // this = person, выведет 'Иван'
+person.sayHi();         // this = person, выведет 'Иван'
+person.sayBye();        //  this = person, выведет 'Иван'
+person.sayGoodbye();    // т к вызов как obj.method(), то this = obj, выведет 'Иван'
   
 // //sayGoodbye() // не сработает, ReferenceError: sayGoodbye is not defined
 
@@ -61,4 +61,4 @@ const person = new Person('Иван');      // создали экземпляр
 // const goodbye = person1.sayGoodbye;   // обычная функция
 
 // hello();     // 'Иван' - стрелочная функция в контруторе, она сохраняет контекст this = person1
-// goodbye();   //  тк. вызывали как method() без контекста, то будет Ошибка или undefined - потеря контекста
+// goodbye();   // обычна функция в не контурrтора,  тк. вызывали как method() без контекста, то будет Ошибка или undefined - потеря контекста

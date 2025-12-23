@@ -13,8 +13,8 @@ const handler1 = {
   clicks: 0,
 
   handleClick: function() {
-    console.log('В handleClick this =', this); // handler1
-    console.log('this === handler1?', this === handler1); // true
+    console.log('В handleClick this =', this);    // this = handler1
+    console.log('this === handler1?', this === handler1);   // true
     
     this.clicks++; 
     console.log(`Clicks: ${this.clicks}`); 
@@ -22,11 +22,11 @@ const handler1 = {
 
 
   setupEventListeners: function(){ 
-    console.log('В setupEventListeners this =', this); // handler1
+    console.log('В setupEventListeners this =', this);    // handler1
     
-    button.addEventListener('click', () => {     // если стрелочную фукнцию(обработчик) поместить в метод(setupEventListeners) объекта, то this = obj.  Чаще на практике испоьзуют
-      console.log('В стрелочной функции this =', this); // handler1
-      console.log('this === handler1?', this === handler1); // true
+    button.addEventListener('click', () => {          // если стрелочную фукнцию(обработчик) поместить в метод(setupEventListeners) объекта, то this = obj.  Чаще на практике испоьзуют
+      console.log('В стрелочной функции this =', this);       // handler1
+      console.log('this === handler1?', this === handler1);     // true
       
       this.clicks++; 
       console.log(`Arrow clicks: ${this.clicks}`); 
