@@ -22,10 +22,10 @@ const showBrandRegular = function() {     // обычная фукнция
 
 
 
-showBrand.call(car);           // стрелочные игнорируют call/apply, выведет undefined
-showBrand.apply(bike);         // стрелочные игнорируют call/apply, выведет undefined
+showBrand.call(car);           // стрелочные игнорируют call/apply/bind, выведет undefined
+showBrand.apply(bike);         // стрелочные игнорируют call/apply/bind, выведет undefined
 showBrandRegular.call(car);    // call вызывает showBrandRegular с this = car, выведет 'Toyota'
-showBrandRegular.apply(bike);  // call вызывает showBrandRegular с this = bike, выведет 'Yamaha'
+showBrandRegular.apply(bike);  // apply вызывает showBrandRegular с this = bike, выведет 'Yamaha'
 
 
 
