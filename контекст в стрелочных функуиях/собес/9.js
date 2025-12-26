@@ -1,5 +1,16 @@
 // Задача 9: bind/call/apply со стрелочными фуниями
 
+
+
+// функция.call(context, arg1, arg2...) — вызывает функцию(метод) с заданным this = context(obj котрый хотим привязать) и аргументами, переданными по отдельности.
+
+// функция.apply(context, [arg1, arg2...]) — то же, что call, но аргументы передаются в виде массива.
+
+// функция.bind(context, arg1, arg2...) — не вызывает функцию, а возвращает новую функцию, с навсегда привязанным this = context(obj котрый хотим привязать) (и, опционально, аргументами).
+
+
+
+
 // bind/call/apply не работает со стрелочными функциями! Работают только с обычными функуиями
 // если стрелочную фукнцию поместить в метод объекта, то this = obj
 
@@ -41,8 +52,8 @@ const getBrandRegular = function() {    // обычная функция  при
 
 
 
-getBrand.call(car);           // undefined ❌ (стрелочные игнорируют bind/call/apply)
-getBrandRegular.call(car);    // this = car, 'Toyota'
+getBrand.call(car);           // call вызывает фукнуию getBrand c this = car, но ткстрелочные игнорируют bind/call/apply, то   undefined ❌ ()
+getBrandRegular.call(car);    // call вызывает фукнуию getBrandRegular с this = car, выведет 'Toyota'
 
 
 
@@ -69,8 +80,8 @@ const car1 = {
 
 
 
-car1.getBrand() // 'Toyota'
+car1.getBrand()     // 'Toyota'
 
 
 const func = car1.getBrandRegular()
-func() // 'Toyota'
+func()      // 'Toyota'

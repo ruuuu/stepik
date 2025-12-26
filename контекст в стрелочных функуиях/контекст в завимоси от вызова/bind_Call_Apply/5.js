@@ -12,6 +12,8 @@
 
 // После первого вызова bind нельзя изменить контекст this  повторным вызовом bind/call/apply!!
 
+// стрелочные функции игнорируют call/apply/bind
+
 
 
 const obj1 = { name: 'Alice' };

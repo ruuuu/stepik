@@ -1,3 +1,5 @@
+// В колбэке setTimeout обычная функция теряет контекст this. Решения: либо стрелочная функция, либо bind, или сохранение this в переменную.
+
 
 
 const user = {
@@ -27,6 +29,6 @@ const user = {
 
 
 
-user.sayHi();      // выведет undefined
-user.sayHiArrow(); // выведет John
-user.sayHiBind();  // выведет John
+user.sayHi();           // выведет undefined
+user.sayHiArrow();     // выведет John
+user.sayHiBind();     // выведет John

@@ -1,5 +1,7 @@
 // Пример 2: Вложенные объекты
 
+
+
 const company = {
   name: 'Google',
 
@@ -16,6 +18,10 @@ const company = {
 
   }
 };
+
+
+
+
 
 console.log(company.department.getName());     // вывдет  'Engineering'
 console.log(company.department.getNameArrow()); // вывдет indefined
