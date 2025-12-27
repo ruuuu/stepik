@@ -18,17 +18,17 @@ const company = {
 
     getDeptName: function() {
       // контекст1
-      console.log(this.name); // тк вызов getDeptName() происхдит как department.getDeptName(), getDeptName - обычнаяя фукнция(не стрелочная), то this = department
+      console.log(this.name);       // тк вызов getDeptName() происхдит как department.getDeptName(), getDeptName - обычнаяя фукнция(не стрелочная), то this = department
     }, 
     
     getDeptArrow: () => {
       // контекст1
-      console.log(this.name); // this = undefined,  тк стрелочная фукнция берет контекст внешне области(глобальной)
+      console.log(this.name);       // this = undefined,  тк стрелочная фукнция берет контекст внешне области(глобальной)
     }
   }
 };
 
 
 
-company.department.getDeptName(); // 'Dev'
-company.department.getDeptArrow(); // undefined
+company.department.getDeptName();       // 'Dev'
+company.department.getDeptArrow();      // undefined

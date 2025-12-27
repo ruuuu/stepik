@@ -2,7 +2,7 @@
 
 
 
-// В колбэке setTimeout обычная функция теряет контекст. Решения: стрелочная функция, bind, или сохранение this в переменную.
+// В колбэке setTimeout обычная функция теряет контекст this. Решения: стрелочная функция, bind, или сохранение this в переменную.
 
 
 
@@ -11,6 +11,7 @@ const timerObj = {
 
   message: 'Hello!',
   
+  // плохая идетя в коллбэк указывать обычную фукнуию, у нее свой  this, это контекст потеряется
   showMessageRegular() {
     setTimeout(function() {     //  в коллбэке обычная фукнция, то this = undefined, чтобы избедать этого нужно передать стрелочную функцию
       console.log(this.message);      // undefined
@@ -18,6 +19,7 @@ const timerObj = {
   },
   
 
+  // контекст this в переменную  сохранить
   showMessageRegular1() {
     let t = this            //  контекст this в переменную
     setTimeout(function() {    //  в коллбэке обычная фукнция, то this = undefined, чтобы избедать этого нужно передать стрелочную функцию
@@ -26,15 +28,17 @@ const timerObj = {
   },
 
 
+  // в коолбэке использовать стрелочную функцию
   showMessageArrow() {
-    setTimeout(() => {      //  в коллбэке стрелочая фукнция(берет this из окружающей области), то this = timerObj
+    setTimeout(() => {      //  в коллбэке стрелочая фукнция(берет this из окружающей области), то есть из showMessageArrow, то this = timerObj
       console.log(this.message);      // Hello!
     }, 100);
   },
 
-  
+
+  // использварние.bind(this)
   showMessageBind() {
-    setTimeout(function() {   //  в коллбэке обычная фукнция, но тк вызывали ее при помщи .bind(this), то this = timerObj
+    setTimeout(function() {       //  в коллбэке обычная фукнция, но тк вызывали ее при помщи .bind(this), то this = timerObj
       console.log(this.message);    // Hello!
     }.bind(this), 100);
   }
