@@ -14,14 +14,14 @@ const user = {
 
   sayHiArrow: function() {
     setTimeout(() => {
-      console.log(`Hi, ${this.name}`); // стрелчна функия берет this из внейшней области( в данном случае это фукнци sayHiArrow, а у нее this=user )
+      console.log(`Hi, ${this.name}`); // стрелчна функия берет this из внейшней области( в данном случае это фукнци sayHiArrow, а у нее this = user )
     }, 100);
   },
 
 
   sayHiBind: function() {
     setTimeout(function() {
-      console.log(`Hey, ${this.name}`);  // т к bind(this) привязывает this внешней функции(то есть sayHiBind), то this=user
+      console.log(`Hey, ${this.name}`);  // т к коллбэк вызывется при помщи bind с указзанным this, (то есть sayHiBind), то this = user
     }.bind(this), 100);
   }
 

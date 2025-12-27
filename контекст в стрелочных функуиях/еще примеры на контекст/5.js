@@ -12,21 +12,29 @@ const timerObj = {
   message: 'Hello!',
   
   showMessageRegular() {
-    setTimeout(function() {
+    setTimeout(function() {     //  в коллбэке обычная фукнция, то this = undefined, чтобы избедать этого нужно передать стрелочную функцию
       console.log(this.message);      // undefined
     }, 100);
   },
   
 
+  showMessageRegular1() {
+    let t = this            //  контекст this в переменную
+    setTimeout(function() {    //  в коллбэке обычная фукнция, то this = undefined, чтобы избедать этого нужно передать стрелочную функцию
+      console.log(t.message);      // Hello!
+    }, 100);
+  },
+
+
   showMessageArrow() {
-    setTimeout(() => {
+    setTimeout(() => {      //  в коллбэке стрелочая фукнция(берет this из окружающей области), то this = timerObj
       console.log(this.message);      // Hello!
     }, 100);
   },
 
   
   showMessageBind() {
-    setTimeout(function() {
+    setTimeout(function() {   //  в коллбэке обычная фукнция, но тк вызывали ее при помщи .bind(this), то this = timerObj
       console.log(this.message);    // Hello!
     }.bind(this), 100);
   }
@@ -35,6 +43,7 @@ const timerObj = {
 
 
 
-timerObj.showMessageRegular();
-timerObj.showMessageArrow();
-timerObj.showMessageBind();
+timerObj.showMessageRegular();      // undefined
+timerObj.showMessageArrow();        // Hello!
+timerObj.showMessageBind();         // Hello!
+timerObj.showMessageRegular1()       // Hello!
