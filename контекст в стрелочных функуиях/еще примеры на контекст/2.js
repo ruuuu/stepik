@@ -1,5 +1,7 @@
 // 2. Стрелочная функция vs Обычная функция
 
+
+
 const obj = {
   value: 42,
   
@@ -30,6 +32,6 @@ const obj = {
 
 
 
-obj.regularFunc()  // обычная фукнция. тк вызов как obj.method(), то this = obj, выведет 42
+obj.regularFunc()   // обычная фукнция. тк вызов как obj.method(), то this = obj, выведет 42
 obj.arrowFunc();    // стрелчая фукния не иметт своего контекста, берет из внешней области, а внешняя обасть это глоб область, значит this = undefined/window
-obj.nested(); // обычная фукнция. тк вызов как obj.method(), то this = obj
+obj.nested();       // обычная фукнция. тк вызов как obj.method(), то this = obj
