@@ -1,6 +1,8 @@
 // 7. Задача с собеседования (с подвохом)
 
 
+// this — это контекст выполнения функции. Определяется тем как функция вызывается,, а не там где она объявлена.
+
 
 
 // const length = 4;         // глоб область видимости
@@ -14,14 +16,14 @@
 //   length: 5,
   
 //   method(callback) {
-//     callback();           // тк вызов происходит как method(), а не как obj.method() те без контекста, то this = window/global
+//     callback();           // тк вызов происходит как method(), а не как obj.method() т.е без контекста, то this = window/global
 //     console.log(this.length);     // выведет 5
 //   }
 // };
 
 
 
-// obj.method(callback); // undefined
+// obj.method(callback);    // undefined
 
 
 
@@ -29,14 +31,14 @@
 
 // РЕШЕНИЕ1: чтобы obj.method(callback) вернуло 5 нужно ипоьзвать call():
 
-// const length1 = 4;         // глоб область видимости
+// const length1 = 4;         
 
 // function callback() {              // тк глоб область видимости, то this = window/global
 //   console.log(this.length1);       // this определяется в момент вызова функции, а не в момент её объявления. а в глоб области length = 4, значит выведет 4
 // }
 
 
-// const obj1 = {              // глоб область видимости
+// const obj1 = {              
 //   length1: 5,
   
 //   method(callback) {   
@@ -54,20 +56,20 @@
 
 // РЕШЕНИЕ2: чтобы obj.method(callback) вернуло 5 нужно callback сдеалть как метод объекта и в method вызывать как this.callback()
 
-const length1 = 4;         // глоб область видимости
+const length1 = 4;         
 
-const obj1 = {              // глоб область видимости
+const obj1 = {              
   length1: 5,
 
   callback() {              // фукнию сделали как метод объекта
-   console.log('this в callback: ', this)           // тк вызов this.callback(), то this = obj1
+   // console.log('this в callback: ', this)           // тк вызов this.callback(), то this = obj1
    console.log('this.length1 in callback: ', this.length1);     // { length1: 5, callback: func,  method: func }  
   },
   
   method() {   
     console.log(this.callback())                  //  this = obj1
-    console.log('this in method: ', this)        // { length1: 5, callback: func,  method: func }
-    console.log('this.length1 in method: ', this.length1);        // выведет 5
+    // console.log('this in method: ', this)        // { length1: 5, callback: func,  method: func }
+    // console.log('this.length1 in method: ', this.length1);        // выведет 5
   }
 };
 
