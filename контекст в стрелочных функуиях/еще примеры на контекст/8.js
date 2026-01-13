@@ -50,13 +50,13 @@
 
 // const freeFunc1 = obj1.getProp.bind(obj1);      // использовали bind(): вернет новую фукнуию с нвсегла фиксированным this = obj1  
 
-// console.log(obj1.getProp());  // 20
-// console.log(freeFunc1());     //  теперь this = obj1, выведет 20
+// console.log(obj1.getProp());         // 20
+// console.log(freeFunc1());            //  теперь this = obj1, выведет 20
 
 
 
 
-// РЕШЕНИЕ2: чтобы выводило 20, нужно использовать в методе объекта стелочную фукнцию и тогда this = obj:
+// РЕШЕНИЕ2: чтобы выводило 20, нужно использовать в методе объекта стелочную фукнцию(а у нее this равен из окружения) и тогда this = obj:
 
 var prop1 = 10;
 
@@ -64,10 +64,8 @@ const obj1 = {
   prop1: 20,
   
   getProp: function() {
-    const fun = () => {     // у стрелочно фукнци нет своего this, она его берет из окружающей области(то есть из getProp)
-      return this.prop1;
-    }
-
+    const fun = () => this.prop1;     // у стрелочно фукнци нет своего this, она его берет из окружающей области(то есть из getProp)
+      
     return fun();
   }
 };
@@ -76,5 +74,9 @@ const obj1 = {
 
 const freeFunc1 = obj1.getProp;      // обычная функция
 
-console.log(obj1.getProp());  // 20
-console.log(freeFunc1());     //  
+console.log(obj1.getProp());        // 20
+console.log(freeFunc1());     //  undefined, тк вызов просто как method()
+
+
+
+
