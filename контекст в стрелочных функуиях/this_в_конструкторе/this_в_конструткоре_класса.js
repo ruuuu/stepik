@@ -1,4 +1,4 @@
-
+// Классы ES6 и this
 
 
 class User {
