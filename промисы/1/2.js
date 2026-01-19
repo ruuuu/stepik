@@ -1,7 +1,7 @@
 // Более сложный пример с обработкой ошибок и валидацией
 
 
-function fetchUserDataWithValidation() {      // фукнция возврвщает промис котрый разрешится через 2 с
+function fetchUserDataWithValidation() {      // фукнция возврвщает промис(обещание вернуть результат(успешный или неуспшный), черзу 2 с) котрый разрешится через 2 с
 
   return new Promise((resolve, reject) => {     // resolve() - функция, которую нужно вызвать, когда операция завершится успешно
 
@@ -19,9 +19,9 @@ function fetchUserDataWithValidation() {      // фукнция возврвща
 
         resolve(userData);          // разрешаем промис (через 2c)
       } else {
-        reject(new Error('Не удалось получить данные пользователя'));   // reject() - функция, которую нужно вызвать, когда операция завершится НЕуспешно
+        reject(new Error('Не удалось получить данные пользователя'));             // reject() - функция, которую нужно вызвать, когда операция завершится НЕуспешно
       }
-    }, 2000);   // через 2с(симуляция запроса к серверу) промис завершится успешно/неуспешно и вызовется resolve()/reject()
+    }, 2000);                       // через 2с(симуляция запроса к серверу) промис разрешится/отклонится и вызовется resolve()/reject()
   });
 }
 
@@ -34,14 +34,14 @@ function fetchUserDataWithValidation() {      // фукнция возврвща
 
 fetchUserDataWithValidation()         // вернет промис  
   
-  .then((userData) => {               // Этот блок выполнится, когда промис завершится успешно.   userData-это исхдные данные, В then функция resolve()
+  .then((userData) => {               // Этот блок выполнится, когда промис разрешится.   userData-это исхдные данные. В then функция resolve()
     if (!userData.name || !userData.email) {
       throw new Error('Неполные данные пользователя');
     }
 
     return userData;
   })
-  .then((userData) => {       // здесь userData это то, что вернет предыдущий then
+  .then((userData) => {       // здесь userData это то, что вернул предыдущий then
     console.log(`\nПривет, ${userData.name}!`);
     console.log(`Ваш email: ${userData.email}`);
     console.log(`Город: ${userData.city || 'Не указан'}`);
