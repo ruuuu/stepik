@@ -1,4 +1,4 @@
-// Пример 3: Комбинирование с другими промисами
+// Пример 3: Комбинирование с другими промисами(в then() вернет новый промиси следующий then() выполнится когда этт промис разрешится)
 
 
 function fetchUserData() {
@@ -21,9 +21,9 @@ function fetchUserData() {
           reject(new Error('Невалидные данные пользователя'));
         }
         
-        resolve(userData);
+        resolve(userData);      // разрешаем промис(-> в Исполнено) черз 2 с и вызовется resolve()
       } catch (error) {
-        reject(new Error(`Ошибка при создании данных: ${error.message}`));
+        reject(new Error(`Ошибка при создании данных: ${error.message}`));  // отклоняем промис(-> в Отклонено) и вызовется reject()
       }
     }, 2000);
   });
@@ -43,20 +43,23 @@ function fetchUserWithPosts() {
      
       return new Promise(resolve => {     // вернет новый промис
         setTimeout(() => {
-          resolve({
+          resolve({           // разрешаем промис(-> в Исполнено) черз 5 с и вызовется resolve()
             user,
             posts: [
               { id: 1, title: 'Первый пост', date: '2024-01-15' },
               { id: 2, title: 'Второй пост', date: '2024-01-16' }
             ]
           });
-        }, 1000);
+        }, 5000);
       });
     })
-    .then(data => {           // этот then() выполнится, когда разрешится промис из предыдущего then(). data это то, что в resolve, те {user, posts: []} 
+
+    .then(data => {           // этот then() выполнится, когда разрешится промис из предыдущего then(). data это то, что в resolve, те { user, posts: [] } 
+      console.log('data во 2 then ', data)
       console.log(`Пользователь ${data.user.name} имеет ${data.posts.length} постов`);
       return data;
     })
+
     .catch(error => {
       console.error('Ошибка при получении данных:', error);
     });
@@ -71,7 +74,7 @@ fetchUserWithPosts()
 
 // Можно возвращать новый промис в then, и следующий then будет ждать его разрешения
 
-// catch ловит ошибки из всей цепочки выше
+// catch ловит ошибки из всей цепочки then выше
 
 // finally выполняется всегда - независимо от успеха или ошибки
 

@@ -19,12 +19,12 @@ function fetchUserData() {
         
         // Можно добавить валидацию
         if (!userData.name || !userData.email) {
-          reject(new Error('Невалидные данные пользователя'));
+          reject(new Error('Невалидные данные пользователя'));      // отклоняем промис 
         }
         
-        resolve(userData);
+        resolve(userData);      // разрешаем промис 
       } catch (error) {
-        reject(new Error(`Ошибка при создании данных: ${error.message}`));
+        reject(new Error(`Ошибка при создании данных: ${error.message}`));      // отклоняем промис 
       }
     }, 2000);
   });
@@ -39,7 +39,7 @@ function displayUserProfile() {
   loadingElement.textContent = 'Загрузка...';
   document.body.appendChild(loadingElement);
   
-  fetchUserData()   
+  fetchUserData()             // венрнет промис
 
     .then(userData => {
       const profile = document.createElement('div');

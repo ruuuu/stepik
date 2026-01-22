@@ -42,7 +42,7 @@ fetchUserData()
     userData.isAdult = userData.age >= 18;
     return userData;
   })
-  .then((enrichedData) => {   // enrichedData = объект с новыми полями
+  .then((enrichedData) => {   // enrichedData = то, что вернет предыдущи then
     console.log('Обогащенные данные:', enrichedData);
     
     return {
@@ -51,12 +51,12 @@ fetchUserData()
       isAdult: enrichedData.isAdult
     };
   })
-  .then(finalData => {      // finalData = { name, email, isAdult }
+  .then(finalData => {      // finalData = { name, email, isAdult } те то что вернет предыдущи then
     console.log('Финальные данные для отображения:', finalData);
   })
   .catch(error => {
-    console.error('Произошла ошибка:', error.message);    // этот блок выполитсяя если reject() вызовется
+    console.error('Произошла ошибка:', error.message);          // этот блок выполитсяя если reject() вызовется, также если произойдет любая др ошибка в цепочке then выше
   })
-  .finally(() => {
+  .finally(() => {                  // вызовится в любом случае
     console.log('Запрос завершен');
   });
