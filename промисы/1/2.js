@@ -9,7 +9,7 @@ function fetchUserDataWithValidation() {      // фукнция возврвща
     setTimeout(() => {
       const success = Math.random() > 0.2; 
       
-      if (success) {
+      if (!success) {
         const userData = {
           id: 1,
           name: 'Иван Иванов',
@@ -20,9 +20,9 @@ function fetchUserDataWithValidation() {      // фукнция возврвща
 
         resolve(userData);          // разрешаем промис (через 2c) и вызовется resolve() те первый then
       } else {
-        reject(new Error('Не удалось получить данные пользователя'));                 // отклоняем промис (через 2c) и вызовется reject()
+        reject(new Error('Не удалось получить данные пользователя'));                 // отклоняем промис (через 2c) и вызовется reject(), , те то что в catch()
       }
-    }, 2000);                       // через 2с(симуляция запроса к серверу) промис разрешится/отклонится и вызовется resolve()/reject()
+    }, 2000);                                 // через 2с(симуляция запроса к серверу) промис разрешится/отклонится и вызовется resolve()/reject()
   });
 }
 
