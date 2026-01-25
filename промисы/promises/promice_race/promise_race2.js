@@ -11,11 +11,9 @@ const slowSuccess = new Promise((resolve, reject) => {
 
 
 
-
-
 // первый промис отклонится через 5 мс(асинхронно), втрой разрешится через 2 с(асинхроно)
-// первый промис отклрнится раньше
-Promise.race([fastError, slowSuccess])     // вернет новый отклоненный промис, его резульат будет передан в catch()
+// первый промис завершися раньше
+Promise.race([fastError, slowSuccess])     // вернет новый промис(отклоненный), его резульат будет от промиса fastError и передан в catch()
     .then(result => {
         console.log("Успех:", result);
     })

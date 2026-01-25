@@ -25,7 +25,7 @@ const promise3 = new Promise((resolve, reject) => {
 
 // все промисы разрешаются(=> Исполнено) через разное колво мс(те асинхронно)
 // НО первее заверштся(с упехом) promise2
-Promise.race([promise1, promise2, promise3])        //  вернет разрешенный промис promise2, его резульат будет передан в then()
+Promise.race([promise1, promise2, promise3])        //  вернет новый промис, с резульатом promise2, это резульат будет передан в then()
     .then(result => {
         console.log("Победитель:", result);       // выведет "Промис 2 (1 секунда)"
     })

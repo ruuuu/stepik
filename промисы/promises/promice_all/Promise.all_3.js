@@ -7,7 +7,7 @@ const urls = [
   'https://api.example.com/comments'
 ];
 
-const requests = urls.map(url => fetch(url));     // массив завешившихся успехос(-> Исполнено) промисов вернет 
+const requests = urls.map(url => fetch(url));     // верет массив промисов завершившихся успехом(-> Исполнено) 
 
 Promise.all(requests)
   .then(responses => Promise.all(responses.map(r => r.json())))
