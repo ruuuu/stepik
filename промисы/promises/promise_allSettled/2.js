@@ -5,7 +5,7 @@
 
 Promise.all([
   Promise.resolve("Успех 1"),
-  Promise.reject("Ошибка!"),
+  Promise.reject("Ошибка!"), // тут промис прервется с отлонением и результат его передастся в catch
   Promise.resolve("Успех 2") // Этот промис даже не начнет выполняться
 ])
   .then(console.log)
@@ -19,8 +19,8 @@ Promise.all([
 
 // Promise.allSettled() — ждет все промисы(и разрешившиеся, и отклонившиеся). Вернет промис с результатом каждого промиса
 Promise.allSettled([
-  Promise.resolve("Успех 1"),
-  Promise.reject("Ошибка!"),
+  Promise.resolve("Успех 1"),                 // немедленно(синхронно) разрешится
+  Promise.reject("Ошибка!"),                  // немедленно(синхронно) отклонится
   Promise.resolve("Успех 2")
 ])
   .then(results => console.log("Все результаты:", results)); 
