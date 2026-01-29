@@ -1,5 +1,7 @@
 // Пример 4: Обработка форм с несколькими асинхронными валидациями
 
+
+
 async function validateForm(formData) {
 
 
