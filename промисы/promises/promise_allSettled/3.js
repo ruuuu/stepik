@@ -1,13 +1,14 @@
 // Пример 3: Практический случай — загрузка данных из нескольких источников
 
+
 async function fetchMultipleSources(urls) {
 
   const promises = urls.map(url =>                // [ Promise { <pending> }, Promise { <pending> }, Promise { <pending> } ]
     fetch(url)                                    //  fetch работает асинхронно (не блокирует выполнение другого кода) и возвращает сразу объект Promise в состоянии pending, он разрешается(-> fulfilled) в объект Response = {ok, status, statusText, url, headers, body}
-      .then(response => {                         // сотсояние промиса fulfilled с объектом Response, передаем Response
+      .then(response => {                         // состояние промиса fulfilled с объектом Response, передаем Response
         return response.json()
       })
-      .catch(error => ({ error: true, message: error.message }))            // при сетевой ошибке/CORS, промис отклнится в объект Error
+      .catch(error => ({ error: true, message: error.message }))            // при сетевой ошибке/CORS, промис отклонится с объектом Error, котрый передаем в catch
   );
     
   

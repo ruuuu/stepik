@@ -5,15 +5,19 @@
 async function validateForm(formData) {
 
 
-  const validations = [
+  const validations = [                   //  массив промисов
     validateEmail(formData.email),
     validatePassword(formData.password),
     checkUsernameAvailability(formData.username),
     validateAge(formData.age)
   ];
   
-  const results = await Promise.allSettled(validations);
-  
+  console.log('validations: ', validations)             // [Promise { 23 }, Promise { <rejected> 'Пароль слишком короткий' },  Promise { { warning: true, message: 'Имя пользователя занято' } },  Promise { 12 }]
+
+
+  const results = await Promise.allSettled(validations);    // метод ждет когда завершаться(успещно или с ошибкой) все промисы и вернет [{status: , value: успех}, {status: , reason: ошибка}, {}]  этих промисов
+  console.log('results: ', results)                   //  [{ status: 'fulfilled', value: 23 },  { status: 'rejected', reason: 'Пароль слишком короткий' },  {status: 'fulfilled',   value: { warning: true, message: 'Имя пользователя занято' }}]
+
 
   const errors = results
     .filter(result => result.status === 'rejected')
@@ -25,11 +29,14 @@ async function validateForm(formData) {
     .map(result => result.value.message);
   
 
+  // console.log('errors: ', errors)
+  // console.log('warnings: ', warnings)
+  
 
   return {
     isValid: errors.length === 0,
-    errors,
-    warnings
+    errors: errors,
+    warnings: warnings
   };
 }
 
@@ -38,11 +45,17 @@ async function validateForm(formData) {
 
 
 // Симуляция валидаций:
-const validateEmail = () => Promise.resolve();
+const validateEmail = () => Promise.resolve(23);              // промис разрешится с результатом = 23
 
-const validatePassword = () => Promise.reject("Пароль слишком короткий");
+const validatePassword = () => Promise.reject("Пароль слишком короткий");   // промис отклонится c результатом = 'Пароль слишком короткий'
 
-const checkUsernameAvailability = () => 
-  Promise.resolve({ warning: true, message: "Имя пользователя занято" });
+const checkUsernameAvailability = () => Promise.resolve({ warning: true, message: "Имя пользователя занято" });     // промис разрешится c результатом = переданный объект
 
-const validateAge = () => Promise.resolve();
+const validateAge = () => Promise.resolve(12);          // промис разрешится с результатом = 12
+
+
+
+// использование промиса:
+validateForm({email: 'rufink1@mail.ru', passowrd: 'weqweqw', username: 'Rusds', age: 34})         //  Promise в статусе pending
+  .then((res) => console.log(res))         //  res это то что вернт метод 
+
