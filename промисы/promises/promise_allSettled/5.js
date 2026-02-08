@@ -22,3 +22,5 @@ Promise.allSettled(promises)      // → дождется когда все пр
 
 Promise.any(promises)        // вернет промис успешный с результатом = "A"
   .then(r => console.log("any:", r));
+//  Пример 5: Сравнение с Promise.all() и Promise.any()
+

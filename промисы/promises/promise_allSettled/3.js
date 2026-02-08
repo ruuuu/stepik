@@ -14,7 +14,7 @@ async function fetchMultipleSources(urls) {
   
 
 
-  const results = await Promise.allSettled(promises);             // метод ждет когда завершаться все промисы и вернет массив объектов {status: , value:} этих промисов
+  const results = await Promise.allSettled(promises);             // метод ждет когда завершаться все промисы и вернет новый выполненный(когда все промисы выполнться) промис,  и массив объектов {status: , value:} этих промисов
   // console.log('results allSettled(promises): ', results)          // [ { status: 'fulfilled', value: }, {}, {}]
 
   
@@ -64,7 +64,7 @@ async function fetchMultipleSources(urls){
 
   const promises = urls.map(async (url) => {
       try{
-        const response = await fetch(url); // промис может отклонится при сетевой ошибке(нет инета, CORS блокировка) или неверный урл сервеар
+        const response = await fetch(url);          // промис может отклонится при сетевой ошибке(нет инета, CORS блокировка) или неверный урл сервеар
         return await response.json();
       } catch(error){
           return { error: true, message: error.message }
@@ -72,7 +72,7 @@ async function fetchMultipleSources(urls){
   });
   
   
-  // отсаьной кд такой же
+  // остаьной код такой же
 }
   
 
