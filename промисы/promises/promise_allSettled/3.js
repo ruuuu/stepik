@@ -4,17 +4,17 @@
 async function fetchMultipleSources(urls) {
 
   const promises = urls.map(url =>                // [ Promise { <pending> }, Promise { <pending> }, Promise { <pending> } ]
-    fetch(url)                                    //  fetch работает асинхронно (не блокирует выполнение другого кода) и возвращает сразу объект Promise в состоянии pending, он разрешается(-> fulfilled) в объект Response = {ok, status, statusText, url, headers, body}
-      .then(response => {                         // состояние промиса fulfilled с объектом Response, передаем Response
+    fetch(url)                                    //  fetch работает асинхронно (не блокирует выполнение другого кода) и возвращает сразу объект Promise в состоянии pending, он разрешается(-> fulfilled) в объект Response = {ok:, status:, statusText:, url:, headers:, body:}, передается в then
+      .then(response => {                         
         return response.json()
       })
-      .catch(error => ({ error: true, message: error.message }))            // при сетевой ошибке/CORS, промис отклонится с объектом Error, котрый передаем в catch
+      .catch(error => ({ error: true,  message: error.message }))            // при сетевой ошибке/CORS, промис отклонится с объектом Error, котрый передаем в catch
   );
     
   
 
 
-  const results = await Promise.allSettled(promises);             // метод ждет когда завершаться все промисы и вернет новый выполненный(когда все промисы выполнться) промис,  и массив объектов {status: , value:} этих промисов
+  const results = await Promise.allSettled(promises);             // метод ждет когда завершаться все промисы и вернет новый выполненный промис,  и массив объектов {status: , value:} этих промисов
   // console.log('results allSettled(promises): ', results)          // [ { status: 'fulfilled', value: }, {}, {}]
 
   
@@ -48,8 +48,8 @@ const urls = [
   'invalid-url'                   // Этот запрос завершится ошибкой
 ];
 
-fetchMultipleSources(urls)        //  вернет объект {successful, errors, total, succeeded}
-  .then(report => {               // report  это результат fetchMultipleSources
+fetchMultipleSources(urls)        //  вернет объект { successful: , errors: , total: , succeeded: }
+  .then(report => {               // в report попадет результат fetchMultipleSources
     console.log('report: ', report)
     console.log(`Успешно: ${report.succeeded}/${report.total}`);
     console.log("Успешные данные:", report.successful);
@@ -67,7 +67,7 @@ async function fetchMultipleSources(urls){
         const response = await fetch(url);          // промис может отклонится при сетевой ошибке(нет инета, CORS блокировка) или неверный урл сервеар
         return await response.json();
       } catch(error){
-          return { error: true, message: error.message }
+          return { error: true,  message: error.message }
       }
   });
   

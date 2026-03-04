@@ -50,13 +50,13 @@ const validateEmail = () => Promise.resolve(23);              // промис н
 
 const validatePassword = () => Promise.reject("Пароль слишком короткий");   // промис немедленно(синхронно) отклонится c результатом = 'Пароль слишком короткий'
 
-const checkUsernameAvailability = () => Promise.resolve({ warning: true, message: "Имя пользователя занято" });     // промис разрешитсяне медленно(синхронно) c результатом = переданный объект
+const checkUsernameAvailability = () => Promise.resolve({ warning: true, message: "Имя пользователя занято" });     // промис разрешится немедленно(синхронно) c результатом = переданный объект
 
 const validateAge = () => Promise.resolve(12);          // промис разрешится немедленно(синхронно) с результатом = 12
 
 
 
 // использование промиса:
-validateForm({ email: 'rufink1@mail.ru', passowrd: 'weqweqw', username: 'Rusds', age: 34 })         //  Promise в статусе pending
+validateForm({ email: 'rufink1@mail.ru',  password: 'weqweqw',  username: 'Rusds',  age: 34 })         //  Promise в статусе pending
   .then((res) => console.log(res))         //  res это то что вернт метод 
 

@@ -1,15 +1,19 @@
-// Пример 2: Разница с Promise.all()
-
-// Promise.all() — прерывается при первой ошибке (вернет новый промис отклоненный, c результатом от отклоненного промиса и передаст его в catch)
+// Пример 2: Разница  Promise.all() и Promise.allSettled()
 
 
-Promise.all([
-  Promise.resolve("Успех 1"),
-  Promise.reject("Ошибка!"),      // тут промис выполнится с ошибкой  и прервется и результат его передастся в catch
-  Promise.resolve("Успех 2")      // Этот промис даже не начнет выполняться
-])
-  .then(console.log)
-  .catch(error => console.log("Promise.all упал с ошибкой:", error));
+
+// Promise.all() — прерывается при первой ошибке (вернет новый промис отклоненный, c результатом отклоненного промиса и передаст его в catch)
+
+
+// Promise.all([
+//   Promise.resolve("Успех 1"),
+//   Promise.resolve("Успех 2"),      // Этот промис даже не начнет выполняться
+//   Promise.reject("Ошибка!"),      // тут промис выполнится с ошибкой  и прервется и результат его передастся в catch
+// ])
+//   .then((result) => { 
+//     console.log(result) 
+//   })
+//   .catch(error => console.log("Promise.all упал с ошибкой:", error));
 
 
 
