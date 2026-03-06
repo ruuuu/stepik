@@ -16,12 +16,12 @@ const backupSource = fetch('https://httpbin.org/html').catch(() => 'timeout');
 Promise.any([fastSource, reliableSource, backupSource])   //  вернет первый успешно выполнвшийся ромис
   .then((response) => {   // в response передастся то,  что вернет Promise.any(его результат)
     console.log('Данные получены от самого быстрого источника');
-    console.log('response ', response)
+    console.log('response: ', response)
     return response.json();
   })
   .then((data) => {     //  в data передастся то что вернет предыддущий then()
     console.log('Данные:', data);
   })
   .catch(() => {
-    console.error('Все источники недоступны');
+    console.error('Все источники недоступны');    // если ни один из источников не даст ответа, то перейждет сюда
   });

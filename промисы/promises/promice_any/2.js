@@ -12,7 +12,7 @@ Promise.any([promise1, promise2, promise3])
   .then((result) => {
     console.log('Успех:', result);
   })
-  .catch((error) => {
+  .catch((error) => {           // в eror  запишется результат выполненя метода
     console.error('Все отклонены!');
     console.error('Имя ошибки:', error.name); // "AggregateError"
     console.error('Ошибки:', error.errors); // ["Ошибка 1", "Ошибка 2", "Ошибка 3"]

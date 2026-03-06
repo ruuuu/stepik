@@ -12,7 +12,7 @@ const requests = urls.map(url => fetch(url));     // верет массив п�
 Promise.all(requests)
   .then(responses => Promise.all(responses.map(r => r.json())))
   .then(data => {
-    const [users, posts, comments] = data;
+    const [users, posts, comments] = data; // деструктурищация массива
     // обрабатываем все данные
   })
   .catch(error => console.error('Один из запросов не удался:', error));

@@ -7,7 +7,7 @@ function myFunc() {
    
     setTimeout(() => {
 
-      reject(new Error('Произошла ошибка через 1 с'));      // если промис отклонился , то вызовется фунция reject(), те то что в catch()
+      reject(new Error('Произошла ошибка через 1 с'));      //  промис отклонился чере 1 с, потом  вызовется фунция reject(), те то что в catch()
     }, 1000);               
   });
 
@@ -17,11 +17,11 @@ function myFunc() {
 
 
 
-myFunc()
+myFunc()      // вернет промис
   .then((result) => {       // если промис разрешлися, то  вызовется resolve()
     console.log(`Успешно ${result}`)
   })
-  .catch((error) => {      
+  .catch((error) => {         // если промис отклонился, то  вызовется reject()
     console.log(`Ошибка перехвачена - ${error}`)
   })
   .finally(() => {

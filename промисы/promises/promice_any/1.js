@@ -22,8 +22,6 @@
 // const promise3 = new Promise((_, reject) => setTimeout(() => reject("Ошибка3"), 200));     // промис отклонится с результатом "Ошибка3"
 
 
-
-
 // Promise.any([promise1, promise2, promise3])    // вернет первый успешно выполнившийся промис, в result сохранится результ этог промиса 
 //   .then((result) => {
 //     console.log('Первый успешный:', result);      // "Успех 2"

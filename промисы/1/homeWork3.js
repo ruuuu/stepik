@@ -21,11 +21,11 @@ function delayedResponse(ms) {
 
 function myFunc(ms)  {
 
-  delayedResponse(ms)   //  врнет промис
+  delayedResponse(ms)   //  если промис разрешлися, то  вызовется resolve()
     .then((result) => {
       console.log(result)
     })
-    .catch((error) => {           // Добавляем обработку ошибок
+    .catch((error) => {           // если промис отклонится то перейдем сюда
       console.error('Ошибка:', error.message);
     });
 }
