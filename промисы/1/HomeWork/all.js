@@ -35,7 +35,7 @@ fetchData([promise1, promise2, promise3]);
 
 async function fetchData(promiseArray){
   try {
-    const results = await Promise.all(promiseArray);
+    const results = await Promise.all(promiseArray); // ожидаем завершения промиса
     console.log('Все промисы успешно выполнены:'); 
     console.log(results);      
     return results;

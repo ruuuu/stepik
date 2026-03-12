@@ -64,7 +64,7 @@ async function fetchMultipleSources(urls){
 
   const promises = urls.map(async (url) => {
       try{
-        const response = await fetch(url);          // промис может отклонится при сетевой ошибке(нет инета, CORS блокировка) или неверный урл сервеар
+        const response = await fetch(url);          //ожидаем завершения промиса,  промис может отклонится при сетевой ошибке(нет инета, CORS блокировка) или неверный урл сервеар
         return await response.json();
       } catch(error){
           return { error: true,  message: error.message }

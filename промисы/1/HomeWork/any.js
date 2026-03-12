@@ -32,7 +32,7 @@
 async function getFirstSuccessful(promiseArray){
 
   try {
-    const results = await Promise.any(promiseArray);
+    const results = await Promise.any(promiseArray); // ожидаем завершения промиса
     console.log('Первый завершившийся промис (успешный):', results);      
     return results;
   }

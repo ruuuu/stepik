@@ -48,7 +48,7 @@
 
 async function raceToFinish(promiseArray){
   try {
-    const results = await Promise.race(promiseArray);
+    const results = await Promise.race(promiseArray); // ожидаем завершения промиса
     console.log('Первый завершившийся промис (успешный):', results);        
     return results;
   }

@@ -62,7 +62,7 @@ fetchUserData()                   // вернет промис
 // async function fetchAndDisplayUserData() {     // асинхронная функция
 
 //   try {
-//     const userData = await fetchUserData();    // вернет промис
+//     const userData = await fetchUserData();    // ождаем завершения промиса вернет промис
 //     console.log('Данные получены:', userData);
     
 //     const formattedData = {
